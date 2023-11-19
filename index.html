@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Space</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div id="map-container">
+        <canvas id="map" width="3840" height="2160"></canvas>
+        <!--  <canvas id="map" width="9250" height="5750"></canvas>-->
+
+        <div id="coordinates">
+            X:<span id="x-coordinate"></span>
+            Y:<span id="y-coordinate"></span>
+        </div>
+
+        <div id="infobar">
+            Eletero:<div id="health"></div>
+            Pajzs:<span id="shield"></span><br>
+            Sebesseg:<div id="speed"></div>
+        </div>
+        
+        <div id="bar">
+            Kredit:<span id="kredit"></span><br>
+            Uriduim:<span id="uridium"></span><br>
+            XP:<span id="xp"></span><br>
+            Ufo szamlalo:<span id="ufokillcount"></span><br>
+        </div>
+
+
+        <!-- ---------------------------------------------------------------Minimap------------------------------------------------- -->
+
+        <div id="minimap-container">
+            <canvas id="minimap" width="200" height="200"></canvas>
+            <div id="player-marker"></div>
+        </div>
+
+        <!-- ---------------------------------------------------------------SHOP------------------------------------------------- -->
+        <div id="shop-button" class="small-box"></div>
+        <div id="shop-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Shop</h2>
+                <!-- Gombok hozzáadása -->
+                <div class="shop-buttons">
+                    <button id="open-ships-button">Ships</button>
+                    <button id="open-ammo-button">Ammo</button>      
+                </div>
+
+                <div id="ship-info" >
+                    
+                    <div id="ship-images">
+                        <!-- Hajo kepek -->
+                        <img src="ships/Phoenix/1.png"          alt="Phoenix"       id="phoenix-img"        class="ship-image"  data-ship="Phoenix">       
+                        <img src="ships/Defcom/1.png"           alt="Defcom"        id="defcom-img"         class="ship-image"  data-ship="Defcom">         
+                        <img src="ships/Liberator/1.png"        alt="Liberator"     id="liberator-img"      class="ship-image"  data-ship="Liberator">      
+                        <img src="ships/Piranha/1.png"          alt="Piranha"       id="piranha-img"        class="ship-image"  data-ship="Piranha">        <br>
+                        <img src="ships/Nostromo/1.png"         alt="Nostromo"      id="nostromo-img"       class="ship-image"  data-ship="Nostromo">       
+                        <img src="ships/Bigboy/1.png"           alt="Bigboy"        id="bigboy-img"         class="ship-image"  data-ship="Bigboy">         
+                        <img src="ships/Leonov/1.png"           alt="Leonov"        id="leonov-img"         class="ship-image"  data-ship="Leonov">         
+                        <img src="ships/Vengeance/1.png"        alt="Vengeance"     id="vengeance-img"      class="ship-image"  data-ship="Vengeance">      <br>
+                        <img src="ships/Goliath/1.png"          alt="Goliath"       id="goliath-img"        class="ship-image"  data-ship="Goliath">        
+                        <img src="ships/GoliathYellow/1.png"    alt="GoliathYellow" id="goliathYellow-img"  class="ship-image"  data-ship="GoliathYellow">  
+                        <img src="ships/GoliathRed/1.png"       alt="GoliathRed"    id="goliathRed-img"     class="ship-image"  data-ship="GoliathRed">
+                    </div>
+
+                    <!-- Adott hajo leirasa -->
+                    <div id="ship-description" class="description">
+                        <h3>Nev:</h3>
+                        <p id="ship-name"></p>
+                        <h3>Eletero:</h3>
+                        <p id="ship-health"></p>
+                        <h3>Pajzs:</h3>
+                        <p id="ship-shield"></p>
+                        <h3>Sebesseg:</h3>
+                        <p id="ship-speed"></p>
+                        <h3>Sebzes: (x1):</h3>
+                        <p id="ship-damage-x1"></p>
+                    </div>
+                    
+                    <div id="buy-ship-button-container">
+                        <button id="buy-ship-button">Buy</button>
+                    </div>
+
+                </div>
+
+                <div id="ammo-info" class="content-container" style="display: none;">
+                    <img src="ikonok/x1.jpg">
+                    <img src="ikonok/x2.jpg">
+                    <img src="ikonok/x3.jpg">
+                    <img src="ikonok/x4.jpg">
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ---------------------------------------------------------------Iventory------------------------------------------------- -->
+        <ul id="inventory-hotbar">
+            <li>
+                <img src="ikonok/x1.jpg" alt="x1">
+                <div class="Ammobar">
+                    <span id="ammo-x1">500</span>
+                </div>
+            </li>
+            <li>
+                <img src="ikonok/x2.jpg" alt="x2">
+                <div class="Ammobar">
+                    <span id="ammo-x2">100</span>
+                </div>
+            </li>
+            <li>
+                <img src="ikonok/x3.jpg" alt="x3">
+                <div class="Ammobar">
+                    <span id="ammo-x3">100</span>
+                </div>
+            </li>
+            <li>
+                <img src="ikonok/x4.jpg" alt="x4">
+                <div class="Ammobar">
+                    <span id="ammo-x4">900</span>
+                </div>
+            </li>
+            <li>
+                <img src="ikonok/rep.jpg" alt="">
+            </li>
+        </ul>
+    </div>
+
+    <script src="ships.js" defer></script> <!-- elsonek kell meghivni mint a scriptet ;         async attribútum || defer attribútum      -->
+    <script src="shop.js" defer></script>
+    <script src="script.js" defer></script>
+    
+
+</body>
+
+</html>

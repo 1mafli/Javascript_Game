@@ -1,0 +1,242 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Ezzel tiltsd le a görgetést */
+    position: fixed;
+    /* Tiltja az oldal nagyítását */
+    touch-action: manipulation;
+    zoom: reset;
+}
+
+#map-container {
+    width: 100%;
+    height: 100%;
+    background-image: url('maps/newmap.jpg');  
+    background-size: cover;
+    background-position: center center; 
+    position: relative;
+    z-index: 1; /* Növeld meg a háttérkép z-index értékét */
+}
+
+#map {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#coordinates {
+    position: absolute;
+    bottom: 158px;
+    right: 0px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 5px;
+}
+/* minimap */
+#minimap-container {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    background-image: url('maps/newmap.jpg');
+    background-size: cover;
+    border: 5px solid #7a68ac;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 150px;
+    height: auto;
+    z-index: 2; /* Növeld meg a minimap z-index értékét */
+}
+
+#minimap {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+#infobar {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 2;
+}
+
+#bar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 2;
+}
+
+/* ----------------------------------------------------------inventory */
+
+#inventory-hotbar {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    z-index: 0;
+    justify-content: center;
+    position: absolute;
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+}
+
+#inventory-hotbar li {
+    background-color: gray;
+    border: 1px solid gray;
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 0;
+}
+
+#inventory-hotbar li.selected {
+    border: 1px solid rgb(200, 255, 0);
+    z-index: 0;
+}
+
+.Ammobar {
+    text-align: center;
+    position: absolute;
+    bottom: 0; 
+    padding: 5px;
+
+}
+/*----------------------------------------------------------------------------------  damage text */
+
+
+.damage-text {
+    position: fixed;
+    color: rgba(255, 0, 0, 0.6);
+    top: 20px;
+    font-size: 16px;
+    font-weight: 620;
+    font-family: sans-serif;
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+    z-index: 10;
+    animation: fadeout 2s ease-out; 
+}
+
+@keyframes fadeout {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+
+/*----------------------------------------------------------------------------------  SHOP */
+.small-box {
+    width: 25px;
+    height: 25px;
+    background-color: blue;
+    position: fixed;
+    top: 10px; /* Adj hozzá 10px távolságot a tetejéhez */
+    left: 10px; /* Adj hozzá 10px távolságot a bal oldalához */
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: rgba(137, 138, 131, 0.795);
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #fffffffa;
+    width: 60%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Árnyékolás hozzáadása */
+    border-radius: 10px; /* Leegyszerűsített szélei */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
+}
+
+/* --------------------------------------------------------------------Shop megnyitasa */
+.modal-content {  /* az egesz vasarloi felulet */
+    width: 25%; 
+    height: auto;
+    margin: 0 auto; /* középre igazítás vízszintesen */
+    margin-top: 100px; /* függőleges középre igazítás, az értéket a saját igényeidhez igazíthatod */
+}
+
+.shop-buttons { /* felul a shop ammo gomb */
+    margin-bottom: 10px; /* Adjunk hozzá egy kis térközt a gombok alá */
+}
+
+h2 {    /* SHOP kiiras */
+    font-size: 24px;
+    margin: 10px 0;
+    text-align: center; 
+}
+
+.ship-image { /* Hajo negyzete */
+    width: 100px;
+    height: 100px; 
+    cursor: pointer;
+    margin-right: 10px; 
+    border: 2px solid black; 
+}
+
+.ship-image[data-ship="Phoenix"] { /* Jelenlegi hajó zöld kerettel a shopban */
+    border: 2px solid green;
+}
+
+.ship-image.clicked { /* Hajo kek negyzet click utan */
+    border: 2px solid rgb(0, 4, 255); 
+}
+
+/* Hajo leirasa */
+.description {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center; 
+    margin: 0 auto; 
+}
+
+.description h3 {
+    margin: 10px 0;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center; 
+}
+
+.description p {
+    margin: 1px 0;
+    text-align: center; 
+}
+
+.description h3, .description p {
+    display: inline-block;
+    margin: 0 10px; /* Terkoz az elemek kozott */
+}
+
+#buy-ship-button-container { /* but gomb legalul */
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* Adjunk hozzá egy kis térközt a gombok alá */
+}
