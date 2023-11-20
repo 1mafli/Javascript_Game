@@ -40,6 +40,25 @@ shipImages.forEach(function(shipImage) {
     });
 });
 
+document.querySelectorAll('.ship-image').forEach(shipImage => {
+    shipImage.addEventListener('click', function() {
+        // Töröljük az összes hajó kiválasztását
+        document.querySelectorAll('.ship-image').forEach(image => {
+            image.style.border = '2px solid black';
+            image.classList.remove('clicked');
+        });
+
+        // Ha a kattintott hajóra már rákattintottunk korábban, állítsuk vissza a fekete keretét
+        if (this.classList.contains('purchased')) {
+            this.style.border = '2px solid green'; // Megvásárolt hajó kerete zöld
+        } else {
+            this.style.border = '2px solid blue'; // Kiválasztott hajó kerete kék
+            this.classList.add('clicked');
+        }
+    });
+});
+
+
 // Eseménykezelő hozzáadása a "Buy" gombhoz ----------------------------------------------------------------------------------------------------
 document.getElementById("buy-ship-button").addEventListener("click", function() {
     // Ellenőrizd, hogy van-e kiválasztott hajó
@@ -67,17 +86,17 @@ document.getElementById("buy-ship-button").addEventListener("click", function() 
         shipWidth = shipImage.width;
         shipHeight = shipImage.height;
 
-        // Vegyük le az összes zöld keretet
-        const allShipImages = document.querySelectorAll('.ship-image');
-        allShipImages.forEach(function (shipImage) {
-            shipImage.style.border = '2px solid black';
+        // Töröljük az összes hajó zöld keretét, kivéve a kiválasztottat
+        document.querySelectorAll('.ship-image').forEach(image => {
+            if (image !== selectedShipImage) {
+                image.style.border = '2px solid black';
+                image.classList.remove('purchased');
+            }
         });
 
-        // Állítsuk be a zöld keretet a currentShip hajóra
-        document.querySelector(`.ship-image[data-ship="${currentShip.name}"]`).style.border = '2px solid green';
-
+        selectedShipImage.style.border = '2px solid green'; // Kiválasztott és megvásárolt hajó kerete zöldre
+        selectedShipImage.classList.add('purchased');
         console.log(`Megvetted a(z) ${currentShip.name} hajót!`);
-
     }
 });
 
