@@ -1,24 +1,31 @@
 // Eseménykezelő hozzáadása a shop modal megjelenítéséhez
 document.getElementById("shop-button").addEventListener("click", function() {
     document.getElementById("shop-modal").style.display = "block";
+    selectSound.play();
 });
 
 // Eseménykezelő hozzáadása a bezárás gombhoz
 document.getElementsByClassName("close")[0].addEventListener("click", function() {
     document.getElementById("shop-modal").style.display = "none";
+    selectSound.play();
 });
 
 // Eseménykezelő hozzáadása az "Ammo" gombhoz
 document.getElementById("open-ammo-button").addEventListener("click", function() {
     document.getElementById("ammo-info").style.display = "block"; // Láthatóvá teszi az "ammo-info" divet
     document.getElementById("ship-info").style.display = "none"; // Elrejti a "ship-info" divet
+    selectSound.play();
 });
 
 // Eseménykezelő hozzáadása a "Ships" gombhoz
 document.getElementById("open-ships-button").addEventListener("click", function() {
     document.getElementById("ammo-info").style.display = "none"; // Elrejti az "ammo-info" divet
     document.getElementById("ship-info").style.display = "block"; // Láthatóvá teszi a "ship-info" divet
+    selectSound.play();
 });
+
+// Hang lejátszása
+const selectSound = new Audio('hangok/select.wav');
 
 // Kattintáskezelő hozzáadása minden hajóképhez
 const shipImages = document.querySelectorAll(".ship-image");
@@ -37,6 +44,7 @@ shipImages.forEach(function(shipImage) {
         const shipKey = this.getAttribute("data-ship");
         const ship = ships[shipKey];
         displayShipInfo(ship);
+        selectSound.play();
     });
 });
 
@@ -97,6 +105,7 @@ document.getElementById("buy-ship-button").addEventListener("click", function() 
         selectedShipImage.style.border = '2px solid green'; // Kiválasztott és megvásárolt hajó kerete zöldre
         selectedShipImage.classList.add('purchased');
         console.log(`Megvetted a(z) ${currentShip.name} hajót!`);
+        selectSound.play();
     }
 });
 

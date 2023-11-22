@@ -6,6 +6,15 @@ const minimapCanvas = document.getElementById('minimap');
 const minimapCtx = minimapCanvas.getContext('2d');
 
 const playerMarker = document.getElementById('player-marker');;
+
+/* NO GAME SOUND ATM
+const backgroundMusic = new Audio('hangok/Soundtrack.wav');
+backgroundMusic.loop = true; // Loop beállítása true-ra
+document.addEventListener('click', function() {
+    backgroundMusic.play();
+});
+*/
+
 //----------------------------------------------------------GAME-------------------------------------------------------
 // Minden eleterő csík kirajzolása
 function drawHealthBar(x, y, currentHealth, maxHealth) {
@@ -224,7 +233,7 @@ function displayCoordinates(x, y) {
     const canvas = document.getElementById('map'); // Canvas elem lekérése az id alapján
     const ctx = canvas.getContext('2d'); // 2D rajzolási kontextus lekérése
 }
-//----------------------------------------------------------HOTBAR-------------------------------------------------------
+//----------------------------------------------------------HOTBAR+SOUND-------------------------------------------------------
 const hotbar = document.getElementById('inventory-hotbar');
 const items = hotbar.getElementsByTagName('li');
 let selectedSlot = 0; // Az aktuálisan kijelölt slot
@@ -256,6 +265,11 @@ document.addEventListener('keydown', (event) => {
         if (slot >= 0 && slot < items.length) {
             // Kattints rá az adott slotra
             selectItem(slot); // Kijelölés
+
+            // Hang lejátszása
+            const selectSound = new Audio('hangok/select.wav');
+            selectSound.play();
+
             canShoot = false; // Ne indíts lövést az "1" és "4" gombok lenyomásakor
         }
     }
@@ -359,6 +373,9 @@ function shoot(type) {
 
         // Frissítsd az UI-t, hogy megjelenítse az aktuális lövedék mennyiséget
         document.getElementById(`ammo-${type}`).textContent = ammoCount[type];
+
+        const shootSound = new Audio('hangok/shoot.wav');
+        shootSound.play();
     }
 }
 //----------------------------------------------------------ANIMATION-------------------------------------------------------
