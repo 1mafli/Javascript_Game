@@ -17,7 +17,6 @@ document.addEventListener('click', function() {
 
 //----------------------------------------------------------GAME-------------------------------------------------------
 // Minden eleterő csík kirajzolása
-//test
 function drawHealthBar(x, y, currentHealth, maxHealth) {
     const barWidth = 100; // A csík szélessége
     const barHeight = 10; // A csík magassága
